@@ -1,0 +1,91 @@
+{
+	"interactionModel": {
+    	"languageModel": {
+        	"invocationName": "test",
+        	"intents": [
+            	{
+                	"name": "AMAZON.FallbackIntent",
+                	"samples": []
+            	},
+            	{
+                	"name": "AMAZON.CancelIntent",
+                	"samples": []
+            	},
+            	{
+                	"name": "AMAZON.HelpIntent",
+                	"samples": []
+            	},
+            	{
+                	"name": "AMAZON.StopIntent",
+                	"samples": []
+            	},
+            	{
+                	"name": "AMAZON.NavigateHomeIntent",
+                	"samples": []
+            	},
+            	{
+                	"name": "croptime",
+                	"slots": [
+                    	{
+                        	"name": "crop",
+                        	"type": "cropslot"
+                    	}
+                	],
+                	"samples": [
+                    	"when should i grow {crop}",
+                    	"when is the best time to grow {crop}"
+                	]
+            	},
+            	{
+                	"name": "AMAZON.PauseIntent",
+                	"samples": []
+            	},
+            	{
+                	"name": "AMAZON.ResumeIntent",
+                	"samples": []
+            	},
+            	{
+                	"name": "croprate",
+                	"slots": [
+                    	{
+                        	"name": "crop",
+                        	"type": "cropslot"
+                    	}
+                	],
+                	"samples": [
+                    	"how much will i get for {crop} right now",
+                    	"what will i get for {crop} in the market",
+                    	"what is the current market rate for {crop}",
+                    	"what is the market rate of {crop}"
+                	]
+            	}
+        	],
+        	"types": [
+            	{
+                	"name": "cropslot",
+                	"values": [
+                    	{
+                        	"name": {
+                            	"value": "corn",
+                            	"synonyms": [
+                                	"maize"
+                            	]
+                        	}
+                    	},
+                    	{
+                        	"name": {
+                            	"value": "wheat"
+                        	}
+                    	},
+                    	{
+                        	"name": {
+                            	"value": "rice "
+                        	}
+                    	}
+                	]
+            	}
+        	]
+    	}
+	}
+}
+
