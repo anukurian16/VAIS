@@ -1,5 +1,15 @@
 # Voice-based Agricultural Information System (VAIS)
 
+Centralized information system for farmers, accessible at rural areas
+
+As a large number of farmers in rural India do not have access to the internet and are not tech savvy, our idea is to set up telephones in public areas which helps farmers obtain required information. The telephones are connected to a hosted asterisk based IP PBX. The PBX streams the channel to an Alexa voice system and streams back its responses to the farmers. A new skill set is to be developed for Alexa which provides farmers with information about subsidies, new diseases, weather forecasts, etc. The farmers possessing smartphones may also directly access the skill set.
+
+## Features:
+
+* Telephone that connects to an asterisk based IP PBX which in turn connects to Alexa voice system
+* Alexa skill set for providing information to farmers such as subsidies, new diseases, weather forecasts, etc.
+
+
 
 # Set up alexa with asterisk
 
