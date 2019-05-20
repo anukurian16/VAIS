@@ -1,21 +1,9 @@
-# Voice-based Agricultural Information System (VAIS)
-
-Centralized information system for farmers, accessible at rural areas
-
-As a large number of farmers in rural India do not have access to the internet and are not tech savvy, our idea is to set up telephones in public areas which helps farmers obtain required information. The telephones are connected to a hosted asterisk based IP PBX. The PBX streams the channel to an Alexa voice system and streams back its responses to the farmers. A new skill set is to be developed for Alexa which provides farmers with information about subsidies, new diseases, weather forecasts, etc. The farmers possessing smartphones may also directly access the skill set.
-
-## Features:
-
-* Telephone that connects to an asterisk based IP PBX which in turn connects to Alexa voice system
-* Alexa skill set for providing information to farmers such as subsidies, new diseases, weather forecasts, etc.
-
-
-
 # Set up alexa with asterisk
 
-## The setup of Asterisk for Alexa involves 2 main steps.
+## The setup of Asterisk for Alexa involves 3 main steps.
 * Install Asterisk Server with extensions.
 * Install Alexa on Asterisk Server.
+* Test the call
 
 ## Step 1: Install Asterisk Server
 
@@ -49,7 +37,7 @@ $sudo cat extensions.conf >> /etc/asterisk/extensions.conf
 
 
 ## Step 2: Install Alexa on Asterisk
-### 1 .Install packages and files
+### 1. Install packages and files
 ```
 sudo cp alexa.agi /usr/share/asterisk/agi-bin/alexa.agi
 sudo cp avs_audio.json /etc/
@@ -115,3 +103,51 @@ include => iaxprovider
 include => alexa_tts
 ```
 ### 4. Reboot system
+
+## Step 3: Test the Call
+
+Create Extension 5310: Append to /etc/asterisk/sip.conf
+```
+[5310]
+type=friend
+username=5310
+fromuser=5310
+host=dynamic
+context=local
+insecure=port
+qualify=500
+dtmfmode=rfc2833
+disallow=all
+allow=ulaw
+obtained
+progressinband=no
+nat=no
+mailbox=5310
+callerid=5310
+
+```
+Append to /etc/asterisk/extensions.conf
+```
+; Basic SIP Phone
+exten => 5310,1,Dial(SIP/5310,15)
+exten => 5310,2,Voicemail(5310,u)
+exten => 5310,3,Hangup
+exten => 5310,102,Voicemail(5310,b)
+exten => 5310,103,Hangup
+```
+
+
+### Test the call:
+
+1. Configure a softphone(SIP Phone) using the extension 5310.
+2. SIP Phone options for 5310: Download a softphone like Zoiper and configure the following:
+	SIP Proxy Server: 192.168.1.XX <- The IP Address of your server
+	Domain/Realm/Registration: <same IP as above>
+	Username: 5310
+	Password: alexa5310
+3. Dial 5555 from the softphone
+6. After the alexa greeting message a beep will sound. Now, you may ask alexa help for various queries, like:
+    * what is the best time to grow rice?
+    * what is the current market rate of wheat?
+    * and so on
+
