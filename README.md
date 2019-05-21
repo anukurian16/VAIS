@@ -141,10 +141,12 @@ exten => 5310,103,Hangup
 
 1. Configure a softphone(SIP Phone) using the extension 5310.
 2. SIP Phone options for 5310: Download a softphone like Zoiper and configure the following:
+```
 	SIP Proxy Server: 192.168.1.XX <- The IP Address of your server
 	Domain/Realm/Registration: <same IP as above>
 	Username: 5310
 	Password: alexa5310
+```
 3. Dial 5555 from the softphone
 6. After the alexa greeting message a beep will sound. Now, you may ask alexa help for various queries, like:
     * what is the best time to grow rice?
